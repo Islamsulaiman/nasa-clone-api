@@ -1,0 +1,5 @@
+This file will contain internal error codes in the API to pass errors from the API to the main error function
+
+1. users:
+CODE : EXPLAINATION
+a. 1 : duplicated data (email, user name, ...etc)
