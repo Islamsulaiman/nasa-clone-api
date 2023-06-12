@@ -17,6 +17,7 @@ const errorFunction = (err:Error, req: Request, res: Response, next: NextFunctio
 //   } else if (err.message === 'Email or password dosnt match!, try again') {
 //     res.status(400).json({ 'Error massage': 'Email or password dosnt match!, try again' });
 //   }
+  console.log(`err.message ${err.message}`);
 
   if (err.message.substring(0, 6) === 'E11000') {
     // error from mongo (duplicated email)
@@ -29,9 +30,9 @@ const errorFunction = (err:Error, req: Request, res: Response, next: NextFunctio
     res.status(400).json({ 'Error massage': 'No user where provided for update' });
   } else if (err.message === '4') {
     res.status(400).json({ 'Error massage': 'User didnt update due to network issues, try again later' });
+  } else if (err.message === '5') {
+    res.status(400).json({ 'Error massage': 'User not found, please enter valid data' });
   }
-
-  //   console.log(err.message.substring(0, 6));
 
   next();
 };
