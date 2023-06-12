@@ -12,7 +12,7 @@ const userLogin = async (req: Request, res: Response) => {
 
   // compare user input data with db data
   const compare = await authMethods.comparePasswd(password, userDataFromDB.password);
-  if (!compare) res.status(401).json('error2');
+  if (!compare) throw new Error('2');
   else {
     // send user a token
     const token = authMethods.generateJWT({ id: userDataFromDB.id });

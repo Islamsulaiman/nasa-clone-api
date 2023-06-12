@@ -1,7 +1,16 @@
 import { Router } from 'express';
-
-import { userControllers } from '../controllers/users';
+import { userMiddelwares } from '../middelwares/users';
+import { errorHandling } from '../middelwares/errorFunction';
 
 const router = Router();
 
-// router.post
+router.patch(
+  '/profile/:id',
+  //   validation.checkFirstName,
+  //   validation.checkLastName,
+  //   validation.checkEmail,
+  //   validation.validateInput,
+  errorHandling(userMiddelwares.updateUserFunc),
+);
+
+export const userRoute: Router = router;

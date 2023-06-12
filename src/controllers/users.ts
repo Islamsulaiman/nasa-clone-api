@@ -1,4 +1,13 @@
+/* eslint-disable max-len */
 import { models } from '../models';
+
+type UpdteUserData = {
+  fullName?: string,
+  password?: string,
+  email?: string,
+  userName?: string,
+  image?: string
+};
 
 const creat = (data:any) => models.User.create(data);
 
@@ -7,7 +16,10 @@ const getUser = (email:string) => {
   return user;
 };
 
+const updateUser = (id: string, data: UpdteUserData) => models.User.updateOne({ _id: id }, data, { runValidators: true });
+
 export const userControllers = {
   creat,
   getUser,
+  updateUser,
 };

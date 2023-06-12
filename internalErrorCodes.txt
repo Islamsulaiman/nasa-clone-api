@@ -2,5 +2,7 @@ This file will contain internal error codes in the API to pass errors from the A
 
 1. users:
 CODE : EXPLAINATION
-a. 1 : user not created due to network issue
-b. 2 : Email or password dosnt match!, try again
+1 : user not created due to network issue
+2 : Email or password dosnt match!, try again
+3 : No user values provided for update
+4 : User didnt update due to network issues

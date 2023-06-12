@@ -5,6 +5,15 @@ import { userControllers } from '../controllers/users';
 
 dotenv.config();
 
+// data types
+type UpdteUserData = {
+  fullName?: string,
+  password?: string,
+  email?: string,
+  userName?: string,
+  image?: string
+};
+
 const createUser = async (req: Request, res: Response) : Promise<Response> => {
   const {
     fullName, email, userName, image,
@@ -22,6 +31,40 @@ const createUser = async (req: Request, res: Response) : Promise<Response> => {
   return res.status(200).json(user);
 };
 
+const updateUserFunc = async (req: Request, res: Response) => {
+  // if (!req.params.id) throw new Error('3');
+  const { id } = req.params;
+
+  console.log(`id ${id}`);
+
+  const {
+    fullName, email, userName, image,
+  } = req.body;
+
+  console.log(fullName, email, userName, image, id);
+
+  let { password } = req.body;
+
+  if (password) {
+    password = authMethods.hashPassword(password);
+  }
+
+  const updateObject: UpdteUserData = {
+    fullName, email, userName, image, password,
+  };
+
+  if (Object.values(updateObject).every((value) => value === undefined)) {
+    throw new Error('3');
+  }
+
+  const newUser = await userControllers.updateUser(id, updateObject);
+
+  if (!newUser) throw new Error('4');
+
+  return res.status(200).json(newUser);
+};
+
 export const userMiddelwares = {
   createUser,
+  updateUserFunc,
 };
