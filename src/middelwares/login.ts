@@ -8,9 +8,8 @@ const userLogin = async (req: Request, res: Response) => {
   const userDataFromDB: any = await userControllers.getUser(email);
 
   // Email or password dosnt match!, try again
-  if (!userDataFromDB) {
-    res.status(401).json('error1');
-  }
+  if (!userDataFromDB) throw new Error('2');
+
   // compare user input data with db data
   const compare = await authMethods.comparePasswd(password, userDataFromDB.password);
   if (!compare) res.status(401).json('error2');

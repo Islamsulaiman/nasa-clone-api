@@ -17,7 +17,7 @@ const createUser = async (req: Request, res: Response) : Promise<Response> => {
     fullName, password, email, userName, image,
   });
 
-  if (!user) throw new Error('Error: user is not created');
+  if (!user) throw new Error('1');
 
   return res.status(200).json(user);
 };

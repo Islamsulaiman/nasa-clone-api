@@ -2,4 +2,5 @@ This file will contain internal error codes in the API to pass errors from the A
 
 1. users:
 CODE : EXPLAINATION
-a. 1 : duplicated data (email, user name, ...etc)
+a. 1 : user not created due to network issue
+b. 2 : Email or password dosnt match!, try again
