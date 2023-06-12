@@ -19,11 +19,7 @@ const createUser = async (req: Request, res: Response) : Promise<Response> => {
 
   if (!user) throw new Error('Error: user is not created');
 
-  const myData = await fetch('https://images-api.nasa.gov/search?q=moon')
-    .then((response) => response.json());
-    // .then((data) => console.log(data.collection.items[0]));
-
-  return res.status(200).json(myData);
+  return res.status(200).json(user);
 };
 
 export const userMiddelwares = {
