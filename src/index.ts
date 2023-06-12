@@ -1,8 +1,9 @@
 /* eslint-disable import/no-extraneous-dependencies */
-import express, { Express, Response, Request } from 'express';
+import express, { Express } from 'express';
 import * as dotenv from 'dotenv';
 import mongoose from 'mongoose';
 import morgan from 'morgan';
+import { indexRouter } from './routes';
 
 dotenv.config();
 
@@ -15,10 +16,7 @@ const app : Express = express();
 app.use(express.json());
 app.use(morgan('tiny'));
 
-app.use('/', (req: Request, res: Response) => {
-  console.log('Index');
-  return res.status(200).send('Hello from space');
-});
+app.use(indexRouter);
 
 const port = process.env.PORT;
 app.listen(port, () => {
