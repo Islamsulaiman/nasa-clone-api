@@ -5,7 +5,7 @@ const add = (data: IFavorite) => models.Favorites.create(data);
 
 const findByNasaId = (nasa_id:number) => models.Favorites.find({ 'data.nasa_id': nasa_id });
 
-export const favoriteModels = {
+export const favoriteControllers = {
   add,
   findByNasaId,
 };
