@@ -18,7 +18,20 @@ const getUser = (email:string) => {
 
 const updateUser = (id: string, data: UpdteUserData) => models.User.updateOne({ _id: id }, data, { runValidators: true });
 
-const addFavorite = (id:string, favoriteId: string) => models.User.updateOne({ _id: id }, { $addToSet: { favorites: favoriteId } });
+const addFavorite = async (id:string, favoriteId: string) => {
+  const result = await models.User.findOneAndUpdate(
+    { _id: id, favorites: { $ne: favoriteId } }, // Only update if the `favorites` array doesn't already contain `favoriteId`
+    { $addToSet: { favorites: favoriteId } }, // Add `favoriteId` to the `favorites` array
+    { new: true }, // Return the updated document
+  );
+
+  if (result) {
+    // If the `favorites` array was modified, return the updated document
+    return result;
+  }
+  // If the `favorites` array was not modified, return false
+  return false;
+};
 
 export const userControllers = {
   creat,
