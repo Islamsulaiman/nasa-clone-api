@@ -1,15 +1,14 @@
 import { Router } from 'express';
 import { userMiddelwares } from '../middelwares/users';
 import { errorHandling } from '../middelwares/errorFunction';
+import { validations } from '../middelwares/validations';
 
 const router = Router();
 
 router.patch(
   '/profile/:id',
-  //   validation.checkFirstName,
-  //   validation.checkLastName,
-  //   validation.checkEmail,
-  //   validation.validateInput,
+  validations.checkEmail,
+  validations.checkPassowrd,
   errorHandling(userMiddelwares.updateUserFunc),
 );
 

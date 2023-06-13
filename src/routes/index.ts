@@ -5,6 +5,7 @@ import { errorHandling } from '../middelwares/errorFunction';
 import { userRoute } from './users';
 import { authMethods } from '../middelwares/authuntication';
 import { searchRoute } from './search';
+import { favoriteRoute } from './favorites';
 
 const router = Router();
 
@@ -15,5 +16,7 @@ router.use('/login', errorHandling(loginMethods.userLogin));
 router.use('/users', authMethods.userAuth, errorHandling(userRoute));
 
 router.use('/search', searchRoute);
+
+router.use('/favorite', favoriteRoute);
 
 export const indexRouter:Router = router;

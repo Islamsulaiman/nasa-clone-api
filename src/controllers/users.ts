@@ -18,8 +18,11 @@ const getUser = (email:string) => {
 
 const updateUser = (id: string, data: UpdteUserData) => models.User.updateOne({ _id: id }, data, { runValidators: true });
 
+const addFavorite = (id:string, favoriteId: string) => models.User.updateOne({ _id: id }, { $addToSet: { favorites: favoriteId } });
+
 export const userControllers = {
   creat,
   getUser,
   updateUser,
+  addFavorite,
 };
