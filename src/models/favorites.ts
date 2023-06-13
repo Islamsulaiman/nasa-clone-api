@@ -1,48 +1,3 @@
-// import mongoose from 'mongoose';
-
-// const { Schema } = mongoose;
-
-// interface IFavorite {
-//   title: string;
-//   description?: string;
-//   media_type: string;
-//   url: string;
-//   thumbnail_url?: string;
-//   date_created?: Date;
-//   user: string | undefined; // User ObjectId
-//   instance: number
-// }
-
-// const favoriteSchema = new Schema<IFavorite>({
-//   title: {
-//     type: String, required: true,
-//   },
-//   description: {
-//     type: String,
-//   },
-//   media_type: {
-//     type: String, required: true,
-//   },
-//   url: {
-//     type: String, required: true,
-//   },
-//   thumbnail_url: {
-//     type: String,
-//   },
-//   date_created: {
-//     type: Date, default: Date.now,
-//   },
-//   user: {
-//     type: mongoose.Schema.Types.ObjectId,
-//     ref: 'User',
-//   },
-//   instance: Number,
-// });
-
-// const User = mongoose.model('user', favoriteSchema);
-
-// export default User;
-
 import mongoose from 'mongoose';
 
 const { Schema } = mongoose;
@@ -109,8 +64,6 @@ const favoriteSchema = new Schema<IFavorite>({
   },
 });
 
-const Favorites = mongoose.model<IFavorite>('Image', favoriteSchema);
+const Favorites = mongoose.model<IFavorite>('Favorite', favoriteSchema);
 
 export default Favorites;
-
-// export { IImage, ImageModel };

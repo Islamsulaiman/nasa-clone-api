@@ -7,7 +7,8 @@ interface UserType {
   password: string,
   email: string,
   userName: string,
-  image: string
+  image: string,
+  favorites: []
 }
 
 const userSchema = new Schema<UserType>(
@@ -45,6 +46,12 @@ const userSchema = new Schema<UserType>(
       required: true,
 
     },
+    favorites: [
+      {
+        type: mongoose.Schema.Types.ObjectId,
+        ref: 'Favorite',
+      },
+    ],
   },
   {
     timestamps: true,
