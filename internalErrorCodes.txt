@@ -9,7 +9,14 @@ CODE : EXPLAINATION
 4 : User didnt update due to network issues
 5 : provided token user not found 
 
+
 2. search
 
 CODE : EXPLAINATION
 11 : the search didnt return data due to anything
+
+
+3. favorites
+
+CODE : EXPLAINATION
+21 : if we added the favorite to the same user twice

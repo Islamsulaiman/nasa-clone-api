@@ -22,6 +22,8 @@ const errorFunction = (err:Error, req: Request, res: Response, next: NextFunctio
     res.status(400).json({ 'Error massage': 'User not found, please enter valid data' });
   } else if (err.message === '11') {
     res.status(400).json({ 'Error massage': 'Please enter valid search terms' });
+  } else if (err.message === '21') {
+    res.status(400).json({ 'Error massage': 'This user alredy had this favorite before' });
   }
 
   next();
