@@ -5,7 +5,8 @@ import mongoose from 'mongoose';
 import morgan from 'morgan';
 import { indexRouter } from './routes';
 import { errorFunction, errorHandling } from './middelwares/errorFunction';
-import cors from 'cors';
+// import cors from 'cors';
+
 
 dotenv.config();
 
@@ -18,7 +19,7 @@ export const app : Express = express();
 app.use(express.json());
 app.use(morgan('tiny'));
 
-app.use(cors())
+// app.use(cors())
 
 app.use(errorHandling(indexRouter));
 
