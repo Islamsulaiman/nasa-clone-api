@@ -1,3 +1,4 @@
+/* eslint-disable max-len */
 import { Request, Response } from 'express';
 
 import { favoriteControllers } from '../controllers/favorites';
@@ -7,21 +8,34 @@ const add = async (req: Request, res: Response) : Promise<Response> => {
   const { href, data, links } = req.body;
   const increment = 1;
 
-  //   console.log(href, data, links, increment);
+  const { nasa_id } = data[0];
 
-  // 1 add to favorite table if not already there
+  const userId = '648859c255935ea38dc0a9ee';
+  const favoriteId = '648859fb55935ea38dc0a9f0';
+
+  // 1 Check first if the favorite alread there in the favorite document using nasa_id
+  const isFavoriteExists = await favoriteControllers.findByNasaId(nasa_id);
+
+  // 1.a if already inside favorite document, isFavoriteExists will not be an empty array
+  if (isFavoriteExists.length > 0) {
+    //  add to user array of favorites
+    const userFavorites = await userControllers.addFavorite(userId, favoriteId); // returns false if this specific user already had it, so throw error
+    if (!userFavorites) throw new Error('21');
+
+    // increment counter inside this specific favorite
+    const incrementFav = await favoriteControllers.increment(nasa_id);
+  }
+
+  // 2 add to favorite table if not already there
   const myFavorites = await favoriteControllers.add({
     href, data, links, increment,
   });
 
   //   console.log(`myFavorites ${myFavorites}`);
 
-  const userId = '648859c255935ea38dc0a9ee';
-  const favoriteId = '648859fb55935ea38dc0a9f0';
-
   console.log(`userId: ${userId} favoriteId ${favoriteId}`);
 
-  // 2 add to user array of favorites
+  // 3 add to user array of favorites
   const userFavorites = await userControllers.addFavorite(userId, favoriteId);
 
   console.log(`userFavorites ${userFavorites}`);
