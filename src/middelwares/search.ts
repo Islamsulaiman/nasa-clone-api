@@ -18,7 +18,7 @@ const serachData = async (req: Request, res: Response) : Promise<Response> => {
   // eslint-disable-next-line space-unary-ops
   const myDataAraray = myData.collection.items.slice(pageNumber * limit, (pageNumber * limit) + limit);
 
-  if (myDataAraray.collection.items.length === 0) throw new Error('11');
+  if (myDataAraray.length === 0) throw new Error('11');
 
   return res.status(200).send(myDataAraray);
 };
