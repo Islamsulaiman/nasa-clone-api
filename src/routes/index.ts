@@ -17,6 +17,6 @@ router.use('/users', authMethods.userAuth, errorHandling(userRoute));
 
 router.use('/search', searchRoute);
 
-router.use('/favorite', favoriteRoute);
+router.use('/favorite', authMethods.userAuth, favoriteRoute);
 
 export const indexRouter:Router = router;
