@@ -47,7 +47,7 @@ import mongoose from 'mongoose';
 
 const { Schema } = mongoose;
 
-interface IFavorite {
+export interface IFavorite {
   href: string;
   data: {
     center: string;
