@@ -13,7 +13,7 @@ mongoose.connect(mongoUrl)
   .then(() => console.log('DB connected'))
   .catch(() => console.log('DB connection failed'));
 
-const app : Express = express();
+export const app : Express = express();
 app.use(express.json());
 app.use(morgan('tiny'));
 
