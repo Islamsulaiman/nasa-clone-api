@@ -33,9 +33,22 @@ const addFavorite = async (id:string, favoriteId: string) => {
   return false;
 };
 
+const removeFavorite = async (userId: string, favoriteId: any) => {
+  // Find the user document with the matching `_id`
+  const user = await models.User.findOne({ _id: userId });
+
+  if (user && user.favorites.includes(favoriteId)) {
+    // If the `favoriteId` is present in the `favorites` array, remove it using `findOneAndUpdate()`
+    await models.User.findOneAndUpdate({ _id: userId }, { $pull: { favorites: favoriteId } });
+    return true;
+  }
+  return false;
+};
+
 export const userControllers = {
   creat,
   getUser,
   updateUser,
   addFavorite,
+  removeFavorite,
 };

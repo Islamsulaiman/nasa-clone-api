@@ -6,4 +6,6 @@ const router = Router();
 
 router.post('/add', errorHandling(favoriteMiddelware.add));
 
+router.delete('/remove', errorHandling(favoriteMiddelware.remove));
+
 export const favoriteRoute: Router = router;

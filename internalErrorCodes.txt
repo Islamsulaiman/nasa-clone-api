@@ -20,3 +20,4 @@ CODE : EXPLAINATION
 
 CODE : EXPLAINATION
 21 : if we added the favorite to the same user twice
+22 : remove favorite not there in the user
