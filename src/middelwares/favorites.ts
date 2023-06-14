@@ -5,7 +5,6 @@ import { Request, Response } from 'express';
 
 import { favoriteControllers } from '../controllers/favorites';
 import { userControllers } from '../controllers/users';
-import { models } from '../models';
 
 const add = async (req: Request, res: Response) : Promise<Response> => {
   const {

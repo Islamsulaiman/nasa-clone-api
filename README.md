@@ -80,55 +80,18 @@ It will return an array of objects like this:
 ```
 ### Add to favorite
 ```python
-1. endpoint = http://localhost:4000/favorite/add   "Or any port of your choice"
+1. endpoint = http://localhost:4000/favorite/add?userId=6488cc2ac33994783f765ba9   "Or any port of your choice"
+    Note: it takes the logged in userId from client and it will do the magic
 2. you Shall provide an Authorization token in the headres 
-3. Provide the target favorite object from front end to be added i.e.:
-{
-  "_id": {
-    "$oid": "648859fb55935ea38dc0a9f0"
-  },
-  "href": "https://images-assets.nasa.gov/image/PIA13496/collection.json",
-  "data": [
-    {
-      "center": "JPL",
-      "title": "The Moon Largest Impact Basin",
-      "nasa_id": "PIA13496",
-      "date_created": {
-        "$date": "2010-07-13T22:24:40.000Z"
-      },
-      "keywords": [
-        "Moon",
-        "Lunar Reconnaissance Orbiter LRO"
-      ],
-      "media_type": "image",
-      "description_508": "The Moon Largest Impact Basin",
-      "secondary_creator": "NASA/GSFC/Arizona State University",
-      "description": "The Moon Largest Impact Basin",
-      "_id": {
-        "$oid": "648859fb55935ea38dc0a9f1"
-      }
-    }
-  ],
-  "links": [
-    {
-      "href": "https://images-assets.nasa.gov/image/PIA13496/PIA13496~thumb.jpg",
-      "rel": "preview",
-      "render": "image",
-      "_id": {
-        "$oid": "648859fb55935ea38dc0a9f2"
-      }
-    }
-  ],
-  "increment": -2,
-  "__v": 0
-}
-
 
 ```
 
 ### Remove from favorite
 ```python
-1. endpoint = http://localhost:4000/favorite/remove?userId=648859c255935ea38dc0a9ee   "Or any port of your choice"
+1. endpoint = http://localhost:4000/favorite/remove?userId=648859c255935ea38dc0a9ee&favoriteId=6489f1d1bf7bc4b4ade44677   "Or any port of your choice"
+    Note: it  takes two query params:
+        a. userId
+        b. favoriteId for the specific data to be removed
 2. you Shall provide an Authorization token in the headres 
 3. Provide the target favorite object from front end to be removed i.e.:
 {
