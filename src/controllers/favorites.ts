@@ -12,6 +12,22 @@ const add = async (data: IFavorite) => {
 
 const findByNasaId = (nasa_id:string) => models.Favorites.find({ 'data.nasa_id': nasa_id });
 
+// const getNasaId = async (id: string) => {
+//   models.Favorites.findById({});
+// };
+const getNasaIdById = async (id: string) => {
+  try {
+    const favorite = await models.Favorites.findById(id);
+    if (!favorite) {
+      throw new Error('Favorite not found');
+    }
+    return favorite.data[0].nasa_id;
+  } catch (error) {
+    console.error(error);
+    return null;
+  }
+};
+
 const increment = (nasa_id:string) => models.Favorites.updateOne({ 'data.nasa_id': nasa_id }, { $inc: { increment: 1 } });
 
 const decrement = async (nasa_id:string) => {
@@ -36,4 +52,5 @@ export const favoriteControllers = {
   increment,
   decrement,
   remove,
+  getNasaIdById,
 };

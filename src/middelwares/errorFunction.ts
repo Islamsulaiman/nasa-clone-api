@@ -25,7 +25,9 @@ const errorFunction = (err:Error, req: Request, res: Response, next: NextFunctio
   } else if (err.message === '21') {
     res.status(400).json({ 'Error massage': 'This user alredy had this favorite before' });
   } else if (err.message === '22') {
-    res.status(400).json({ 'Error massage': 'This favorite not inside thi user' });
+    res.status(400).json({ 'Error massage': 'This favorite do not exists in this user' });
+  } else if (err.message === 'documentObjectId is not defined') {
+    res.status(400).json({ 'Error massage': 'Invalid data with this favoriteID' });
   }
 
   next();
