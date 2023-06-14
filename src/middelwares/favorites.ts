@@ -9,37 +9,43 @@ import { models } from '../models';
 
 const add = async (req: Request, res: Response) : Promise<Response> => {
   const {
-    href, data, links, _id,
+    href, data, links,
   } = req.body;
-  const increment = 1;
 
+  const { userId } = req.query;
   const { nasa_id } = data[0];
 
-  const userId = '648859c255935ea38dc0a9ee';
-  const favoriteId = _id.$oid;
-
   // 1 Check first if the favorite alread there in the favorite document using nasa_id
-  const isFavoriteExists = await favoriteControllers.findByNasaId(nasa_id);
+  const isFavoriteExists = await favoriteControllers.findByNasaId(nasa_id); // will return empty array if not already in
+  // 1.a if its not in the fav doc, add it and return the object id of the favorite
 
-  // 1.a if already inside favorite document, isFavoriteExists will not be an empty array
-  if (isFavoriteExists.length > 0) {
-    //  add to user array of favorites
-    const userFavorites = await userControllers.addFavorite(userId, favoriteId); // returns false if this specific user already had it, so throw error
-    if (!userFavorites) throw new Error('21');
+  console.log('isFavoriteExists');
+  console.log(isFavoriteExists);
 
-    // increment counter inside this specific favorite
-    await favoriteControllers.increment(nasa_id);
-    return res.sendStatus(200);
+  let favoriteId;
+
+  if (isFavoriteExists.length === 0) {
+    // add to favorite table
+    const increment = 0;
+    const objetIdAfterAdding = await favoriteControllers.add({
+      href, data, links, increment,
+    });
+    favoriteId = objetIdAfterAdding;
+  } else {
+    // it already have the doc so we have the object ID
+    favoriteId = isFavoriteExists[0]._id;
   }
 
-  // 2 add to favorite table if not already there
-  await favoriteControllers.add({
-    href, data, links, increment,
-  });
+  const userFavorites = await userControllers.addFavorite(userId as string, favoriteId); // returns false if this specific user already had it, so throw error
+  if (!userFavorites) {
+    if (isFavoriteExists[0].increment === 0) {
+      await favoriteControllers.remove(favoriteId);
+      console.log('deleted');
+    }
+    throw new Error('21');
+  }
 
-  // 3 add to user array of favorites
-  await userControllers.addFavorite(userId, favoriteId);
-
+  await favoriteControllers.increment(nasa_id);
   return res.sendStatus(200);
 };
 

@@ -3,7 +3,12 @@
 import { models } from '../models';
 import { IFavorite } from '../models/favorites';
 
-const add = (data: IFavorite) => models.Favorites.create(data);
+// const add = (data: IFavorite) => models.Favorites.create(data);
+
+const add = async (data: IFavorite) => {
+  const newFavorite = await models.Favorites.create(data);
+  return newFavorite._id; // assuming the object id field is named "_id"
+};
 
 const findByNasaId = (nasa_id:string) => models.Favorites.find({ 'data.nasa_id': nasa_id });
 
@@ -23,9 +28,12 @@ const decrement = async (nasa_id:string) => {
   return result?._id;
 };
 
+const remove = (favoriteId:any) => models.Favorites.deleteOne({ _id: favoriteId });
+
 export const favoriteControllers = {
   add,
   findByNasaId,
   increment,
   decrement,
+  remove,
 };

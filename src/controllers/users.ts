@@ -18,7 +18,7 @@ const getUser = (email:string) => {
 
 const updateUser = (id: string, data: UpdteUserData) => models.User.updateOne({ _id: id }, data, { runValidators: true });
 
-const addFavorite = async (id:string, favoriteId: string) => {
+const addFavorite = async (id:string, favoriteId: any) => {
   const result = await models.User.findOneAndUpdate(
     { _id: id, favorites: { $ne: favoriteId } }, // Only update if the `favorites` array doesn't already contain `favoriteId`
     { $addToSet: { favorites: favoriteId } }, // Add `favoriteId` to the `favorites` array
