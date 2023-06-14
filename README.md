@@ -19,3 +19,4 @@ JWT_SECRET=haveFun
 2. npm run test -> to run tests
 
 ```
+Thank you, and I will continue working on the project locally.
