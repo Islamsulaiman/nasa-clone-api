@@ -8,7 +8,8 @@ interface UserType {
   email: string,
   userName: string,
   image: string,
-  favorites: []
+  favorites: [],
+  tags: []
 }
 
 const userSchema = new Schema<UserType>(
@@ -46,6 +47,9 @@ const userSchema = new Schema<UserType>(
       required: true,
 
     },
+    tags: [{
+      type: String,
+    }],
     favorites: [
       {
         type: mongoose.Schema.Types.ObjectId,

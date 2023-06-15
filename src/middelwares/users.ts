@@ -1,5 +1,6 @@
 import { Request, Response } from 'express';
 import * as dotenv from 'dotenv';
+import crypto from 'crypto';
 import { authMethods } from './authuntication';
 import { userControllers } from '../controllers/users';
 
@@ -74,11 +75,37 @@ const getUserFavorite = async (req: Request, res: Response) => {
   console.log(userId);
 
   const favorites = await userControllers.getUserFavorites(userId as string);
+  console.log(favorites);
   return res.status(200).send(favorites);
+};
+
+const resetPassword = async (req: Request, res: Response) => {
+  const { email } = req.body;
+
+  // check email
+  const checkEmail = await userControllers.resetPassword(email);
+
+  console.log('checkEmail');
+  console.log(checkEmail);
+
+  if (email) {
+    const randomToken = crypto.randomBytes(128).toString('utf8');
+    console.log('randomToken');
+    console.log(randomToken);
+
+    // save in db
+    const saveToDb = await userControllers.saveTokenToDb(email, randomToken);
+
+    console.log('saveTokenToDb');
+    console.log(saveToDb);
+  }
+
+  return res.status(200).send('Request under process');
 };
 
 export const userMiddelwares = {
   createUser,
   updateUserFunc,
   getUserFavorite,
+  resetPassword,
 };

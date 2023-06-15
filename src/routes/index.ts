@@ -13,7 +13,7 @@ router.post('/register', errorHandling(userMiddelwares.createUser));
 
 router.use('/login', errorHandling(loginMethods.userLogin));
 
-router.use('/users', authMethods.userAuth, errorHandling(userRoute));
+router.use('/users', errorHandling(userRoute));
 
 router.use('/search', searchRoute);
 

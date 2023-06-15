@@ -55,6 +55,10 @@ const getUserFavorites = async (userId:string) => {
   }
 };
 
+const resetPassword = (email: string) => models.User.findOne({ email });
+
+const saveTokenToDb = (email : string, token: string) => models.User.findOneAndUpdate({ email }, { $push: { tags: token } });
+
 export const userControllers = {
   creat,
   getUser,
@@ -62,4 +66,6 @@ export const userControllers = {
   addFavorite,
   removeFavorite,
   getUserFavorites,
+  resetPassword,
+  saveTokenToDb,
 };
