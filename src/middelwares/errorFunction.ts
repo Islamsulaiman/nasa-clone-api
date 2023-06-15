@@ -4,6 +4,7 @@ import {
 
 const errorFunction = (err:Error, req: Request, res: Response, next: NextFunction) => {
   console.log(`err.message *${err.message}*`);
+  console.log(err.stack);
 
   if (err.message.substring(0, 6) === 'E11000') {
     // error from mongo (duplicated value)

@@ -13,7 +13,7 @@ CODE : EXPLAINATION
 2. search
 
 CODE : EXPLAINATION
-11 : the search didnt return data due to anything
+11 : the search didnt return data
 
 
 3. favorites
