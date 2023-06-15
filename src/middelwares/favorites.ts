@@ -10,16 +10,12 @@ const add = async (req: Request, res: Response) : Promise<Response> => {
   const {
     href, data, links,
   } = req.body;
-
   const { userId } = req.query;
   const { nasa_id } = data[0];
 
   // 1 Check first if the favorite alread there in the favorite document using nasa_id
   const isFavoriteExists = await favoriteControllers.findByNasaId(nasa_id); // will return empty array if not already in
   // 1.a if its not in the fav doc, add it and return the object id of the favorite
-
-  console.log('isFavoriteExists');
-  console.log(isFavoriteExists);
 
   let favoriteId;
 

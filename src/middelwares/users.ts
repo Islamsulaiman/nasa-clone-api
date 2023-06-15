@@ -67,7 +67,18 @@ const updateUserFunc = async (req: Request, res: Response) => {
   return res.status(200).json(newUser);
 };
 
+const getUserFavorite = async (req: Request, res: Response) => {
+  const { userId } = req.query;
+
+  console.log('userId');
+  console.log(userId);
+
+  const favorites = await userControllers.getUserFavorites(userId as string);
+  return res.status(200).send(favorites);
+};
+
 export const userMiddelwares = {
   createUser,
   updateUserFunc,
+  getUserFavorite,
 };

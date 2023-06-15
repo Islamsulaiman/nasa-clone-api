@@ -12,4 +12,6 @@ router.patch(
   errorHandling(userMiddelwares.updateUserFunc),
 );
 
+router.get('/getFavorites', errorHandling(userMiddelwares.getUserFavorite));
+
 export const userRoute: Router = router;

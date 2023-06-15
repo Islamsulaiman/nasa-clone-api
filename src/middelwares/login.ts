@@ -7,6 +7,8 @@ const userLogin = async (req: Request, res: Response) => {
 
   const userDataFromDB: any = await userControllers.getUser(email);
 
+  const userId = userDataFromDB.id;
+
   // Email or password dosnt match!, try again
   if (!userDataFromDB) throw new Error('2');
 
@@ -16,7 +18,7 @@ const userLogin = async (req: Request, res: Response) => {
   else {
     // send user a token
     const token = authMethods.generateJWT({ id: userDataFromDB.id });
-    res.status(200).json({ token });
+    res.status(200).json({ token, userId });
   }
 };
 

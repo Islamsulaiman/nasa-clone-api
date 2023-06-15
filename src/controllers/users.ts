@@ -45,10 +45,21 @@ const removeFavorite = async (userId: string, favoriteId: never) => {
   return false;
 };
 
+const getUserFavorites = async (userId:string) => {
+  try {
+    const user = await models.User.findById(userId).populate('favorites');
+    return user?.favorites;
+  } catch (error) {
+    console.error(error);
+    return null;
+  }
+};
+
 export const userControllers = {
   creat,
   getUser,
   updateUser,
   addFavorite,
   removeFavorite,
+  getUserFavorites,
 };
