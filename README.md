@@ -135,5 +135,3 @@ It will return an array of objects like this:
 }
 
 ```
-
-Thank you, and I will continue working on the project locally.
