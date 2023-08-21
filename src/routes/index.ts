@@ -15,7 +15,7 @@ router.use('/login', errorHandling(loginMethods.userLogin));
 
 router.use('/users', errorHandling(userRoute));
 
-router.use('/search', searchRoute);
+router.use('/search', errorHandling(searchRoute));
 
 router.use('/favorite', authMethods.userAuth, errorHandling(favoriteRoute));
 
