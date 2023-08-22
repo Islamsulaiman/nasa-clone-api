@@ -1,13 +1,27 @@
+/* eslint-disable import/no-cycle */
+/* eslint-disable import/no-mutable-exports */
 /* eslint-disable import/no-extraneous-dependencies */
 import express, { Express } from 'express';
 import * as dotenv from 'dotenv';
 import mongoose from 'mongoose';
 import morgan from 'morgan';
 import cors from 'cors';
+import { createClient } from 'redis';
 import { indexRouter } from './routes';
 import { errorFunction, errorHandling } from './middelwares/errorFunction';
 
 dotenv.config();
+
+let redisClient: any;
+
+// connect to redis
+(async () => {
+  redisClient = createClient();
+
+  redisClient.on('error', (error: any) => console.error(`Error : ${error}`));
+
+  await redisClient.connect();
+})();
 
 const mongoUrl = process.env.MONGO_URL as string;
 mongoose.connect(mongoUrl)
@@ -29,3 +43,5 @@ const port = process.env.PORT;
 app.listen(port, () => {
   console.log(`The server is running on port " ${port}"`);
 });
+
+export default redisClient;
