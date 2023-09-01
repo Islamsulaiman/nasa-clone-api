@@ -36,16 +36,11 @@ const createUser = async (req: Request, res: Response) : Promise<Response> => {
 };
 
 const updateUserFunc = async (req: Request, res: Response) => {
-  // if (!req.params.id) throw new Error('3');
   const { id } = req.params;
-
-  console.log(`id ${id}`);
 
   const {
     fullName, email, userName, image,
   } = req.body;
-
-  console.log(fullName, email, userName, image, id);
 
   let { password } = req.body;
 
@@ -71,11 +66,7 @@ const updateUserFunc = async (req: Request, res: Response) => {
 const getUserFavorite = async (req: Request, res: Response) => {
   const { userId } = req.query;
 
-  console.log('userId');
-  console.log(userId);
-
   const favorites = await userControllers.getUserFavorites(userId as string);
-  console.log(favorites);
   return res.status(200).send(favorites);
 };
 
@@ -85,19 +76,11 @@ const resetPassword = async (req: Request, res: Response) => {
   // check email
   const checkEmail = await userControllers.resetPassword(email);
 
-  console.log('checkEmail');
-  console.log(checkEmail);
-
   if (email) {
     const randomToken = crypto.randomBytes(128).toString('utf8');
-    console.log('randomToken');
-    console.log(randomToken);
 
     // save in db
     const saveToDb = await userControllers.saveTokenToDb(email, randomToken);
-
-    console.log('saveTokenToDb');
-    console.log(saveToDb);
   }
 
   return res.status(200).send('Request under process');

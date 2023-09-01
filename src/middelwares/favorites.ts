@@ -35,7 +35,6 @@ const add = async (req: Request, res: Response) : Promise<Response> => {
   if (!userFavorites) {
     if (isFavoriteExists[0].increment === 0) {
       await favoriteControllers.remove(favoriteId);
-      console.log('deleted');
     }
     throw new Error('21');
   }

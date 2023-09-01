@@ -10,8 +10,6 @@ const { promisify } = require('util');
 
 const verify = promisify(jwt.verify);
 
-// const verifyUser = (token: string, secret: string) => jwt.verify(token, JWTSecret);
-
 const hashPassword = (password: String): String => bcrypt.hashSync(password as string, 10);
 
 const comparePasswd = async (enteredPassword: string, DB_password: any) :
@@ -46,5 +44,4 @@ export const authMethods = {
   comparePasswd,
   generateJWT,
   userAuth,
-  // verifyUser,
 };
