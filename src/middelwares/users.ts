@@ -21,9 +21,6 @@ const createUser = async (req: Request, res: Response) : Promise<Response> => {
   } = req.body;
   let { password } = req.body;
 
-  console.log('data');
-  console.log(fullName, email, userName, image, password);
-
   password = authMethods.hashPassword(password);
 
   const user = await userControllers.creat({

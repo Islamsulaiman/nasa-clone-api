@@ -18,7 +18,6 @@ const getNasaIdById = async (id: string) => {
     }
     return favorite.data[0].nasa_id;
   } catch (error) {
-    console.error(error);
     return null;
   }
 };

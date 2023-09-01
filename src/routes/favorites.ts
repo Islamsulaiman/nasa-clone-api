@@ -1,3 +1,4 @@
+/* eslint-disable import/no-cycle */
 import { Router } from 'express';
 import { favoriteMiddelware } from '../middelwares/favorites';
 import { errorHandling } from '../middelwares/errorFunction';

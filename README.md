@@ -1,5 +1,13 @@
 # Nasa-Web application Server
 
+## Needed technologies
+
+```python
+1. MongoDB
+2. Redis
+3. NodeJS
+```
+
 
 ## Installation
 
