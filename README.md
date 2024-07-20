@@ -17,14 +17,26 @@ npm i
 
 ## Usage
 
+### Setup locally
 ```python
 1. create a .env file in the root directory and add the following as an example:
-MONGO_URL='mongodb://localhost:27017/nasa'
+MONGO_URL=mongodb://localhost:27017/nasa
 PORT=4000
 JWT_SECRET=haveFun
+REDIS_URL=redis://localhost:6379
 
 2. npm run dev -> to run the server
 3. npm run test -> to run tests
+
+```
+
+### Setup using docker
+```python
+1. create a .env file in the root directory and add the following as an example:
+MONGO_URL=mongodb://mongo:27017/nasa
+PORT=4000
+JWT_SECRET=haveFun
+REDIS_URL=redis://redis:6379
 
 ```
 ## How to use
