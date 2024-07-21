@@ -1,0 +1,39 @@
+version: '3.8'
+services:
+  app: 
+    build:
+      context: .
+      dockerfile: Dockerfile.dev
+    image: nasa-app-image
+    container_name: nasa_app
+    ports: 
+      - 4000:3000
+    depends_on: 
+      - redis
+      - mongo
+    networks: 
+    - nasa_app_network
+
+  mongo:
+    image: mongo:latest
+    container_name: nasa_mongo
+    ports: 
+      - 27017:27017
+    networks: 
+    - nasa_app_network
+    volumes: 
+    - nasa_data:/data/db
+
+  redis:
+    image: redis:alpine
+    container_name: nasa_redis
+    ports:
+      - 6379:6379
+    networks: 
+    - nasa_app_network
+
+networks:
+  nasa_app_network:
+
+volumes:
+  nasa_data:
