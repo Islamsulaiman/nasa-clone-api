@@ -21,7 +21,7 @@ npm i
 ```python
 1. create a .env file in the root directory and add the following as an example:
 MONGO_URL=mongodb://localhost:27017/nasa
-PORT=4000
+PORT=3000
 JWT_SECRET=haveFun
 REDIS_URL=redis://localhost:6379
 
@@ -34,9 +34,11 @@ REDIS_URL=redis://localhost:6379
 ```python
 1. create a .env file in the root directory and add the following as an example:
 MONGO_URL=mongodb://mongo:27017/nasa
-PORT=4000
+PORT=3000
 JWT_SECRET=haveFun
 REDIS_URL=redis://redis:6379
+
+2. docker-compose up -d  -> to run the containers in detached mode
 
 ```
 ## How to use
