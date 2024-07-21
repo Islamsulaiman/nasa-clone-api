@@ -17,8 +17,6 @@ services:
   mongo:
     image: mongo:latest
     container_name: nasa_mongo
-    ports: 
-      - 27017:27017
     networks: 
     - nasa_app_network
     volumes: 
@@ -27,8 +25,6 @@ services:
   redis:
     image: redis:alpine
     container_name: nasa_redis
-    ports:
-      - 6379:6379
     networks: 
     - nasa_app_network
 
