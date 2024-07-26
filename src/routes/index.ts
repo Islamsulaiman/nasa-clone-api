@@ -9,6 +9,10 @@ import { favoriteRoute } from './favorites';
 
 const router = Router();
 
+router.get('/health', (req, res) => {
+  res.status(200).send('OK');
+});
+
 router.post('/register', errorHandling(userMiddelwares.createUser));
 
 router.use('/login', errorHandling(loginMethods.userLogin));
