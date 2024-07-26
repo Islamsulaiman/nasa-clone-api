@@ -11,25 +11,16 @@ services:
     depends_on: 
       - redis
       - mongo
-    networks: 
-    - nasa_app_network
 
   mongo:
     image: mongo:latest
     container_name: nasa_mongo
-    networks: 
-    - nasa_app_network
     volumes: 
     - nasa_data:/data/db
 
   redis:
     image: redis:alpine
     container_name: nasa_redis
-    networks: 
-    - nasa_app_network
-
-networks:
-  nasa_app_network:
 
 volumes:
   nasa_data:
